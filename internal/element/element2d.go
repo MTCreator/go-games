@@ -14,7 +14,7 @@ type Element2d struct {
 	Rotation   float64
 	Active     bool
 	Components []Component
-	Children   []Element2d
+	Children   []*Element2d
 }
 
 // Draw draws the element
@@ -84,6 +84,6 @@ func (e *Element2d) GetComponent(t Component) Component {
 }
 
 // AddChild adds a child Element to the Element
-func (e *Element2d) AddChild(c Element2d) {
+func (e *Element2d) AddChild(c *Element2d) {
 	e.Children = append(e.Children, c)
 }
