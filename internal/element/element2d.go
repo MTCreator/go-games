@@ -27,9 +27,11 @@ func (e *Element2d) Draw(renderer *sdl.Renderer) error {
 	}
 
 	for _, c := range e.Children {
-		err := c.Draw(renderer)
-		if err != nil {
-			return err
+		if c.Active {
+			err := c.Draw(renderer)
+			if err != nil {
+				return err
+			}
 		}
 	}
 
@@ -46,9 +48,11 @@ func (e *Element2d) Update() error {
 	}
 
 	for _, c := range e.Children {
-		err := c.Update()
-		if err != nil {
-			return err
+		if c.Active {
+			err := c.Update()
+			if err != nil {
+				return err
+			}
 		}
 	}
 
