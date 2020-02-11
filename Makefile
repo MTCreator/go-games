@@ -16,7 +16,7 @@ COMMAND_FILES := $(shell find $(COMMANDS_DIR) -name '*.go')
 
 all: test build
 
-build: directories generate
+build: generate
 	$(GOBUILD) -v ./cmd/...
 
 build-debug: generate
