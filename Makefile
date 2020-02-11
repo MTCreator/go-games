@@ -8,6 +8,7 @@ GOGENERATE=$(GOCMD) generate
 
 # Directories
 COMMANDS_DIR=cmd
+BUILD_DIR=bin
 
 # All command files
 COMMAND_FILES := $(shell find $(COMMANDS_DIR) -name '*.go')
@@ -16,10 +17,10 @@ COMMAND_FILES := $(shell find $(COMMANDS_DIR) -name '*.go')
 
 all: test build
 
-build: generate
-	$(GOBUILD) -v ./cmd/...
+build: directories generate
+	$(GOBUILD) -o $(BUILD_DIR) -v ./cmd/...
 
-build-debug: generate
+build-debug: directories generate
 	$(GOBUILD) -race -v ./cmd/...
 
 debug: build-debug
@@ -32,3 +33,6 @@ generate:
 
 clean: 
 	$(GOCLEAN)
+
+directories:
+	mkdir -p bin
